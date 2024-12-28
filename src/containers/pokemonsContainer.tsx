@@ -12,17 +12,12 @@ export function PokemonsContainer() {
     const { control, handleSubmit } = useForm<Pokemon>();
     const [searchBean, setSearchBean] = useState<string>('');
 
-    const { data, loading, error } = useQuery(SEARCH_POKEMON, {
+    const { data } = useQuery(SEARCH_POKEMON, {
         variables: { name: searchBean },
         skip: !searchBean,
     });
 
-    console.log("API response:", data);
-
-
     const pokemons: Pokemon[] = data?.pokemon || [];
-
-    console.log("API response:", pokemons.name);
 
     const onSubmit = (data: any) => {
         setSearchBean(data.name); // Set the search query to trigger the refetch
@@ -112,6 +107,9 @@ export function PokemonsContainer() {
                                 </div>
                             </div>
                         </div>
+                    )}
+                     {(data?.pokemon == null && data?.pokemon == undefined) && (
+                        <h1 className='header' style={{textAlign:'center', marginTop:'10px', color:'red'}}>Pokemon not found!</h1>
                     )}
                 </Card>
             </form>
