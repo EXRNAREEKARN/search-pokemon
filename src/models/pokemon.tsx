@@ -40,7 +40,7 @@ export interface Pokemon {
       }
     ]
   }
-  Evaluation: Evaluation
+  evolutions: Evaluation[]
 }
 
 export interface Evaluation {

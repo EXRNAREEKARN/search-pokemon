@@ -17,8 +17,11 @@ export function PokemonsContainer() {
         skip: !searchBean,
     });
 
-    const pokemons: Pokemon[] = data?.pokemon || [];
+    const pokemons: Pokemon = data?.pokemon;
 
+
+    console.log("data?.pokemon", data?.pokemon);
+    console.log("pokemons=", pokemons);
     const onSubmit = (data: any) => {
         setSearchBean(data.name); // Set the search query to trigger the refetch
     };
@@ -67,7 +70,7 @@ export function PokemonsContainer() {
                             />
                         </div>
                     </div>
-                    {(data?.pokemon != null && data?.pokemon != undefined) && (
+                    {(data?.pokemon != null && data?.pokemon != undefined) && pokemons != null && (
                         <div className="grid-container">
                             <div className="pokemon-card">
                                 <div className='main'>
